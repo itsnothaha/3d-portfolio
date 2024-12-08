@@ -1,0 +1,484 @@
+/* Общие стили */
+body {
+    height: 100%;
+    font-family: 'MyCustomFont', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.no-scroll{
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/LEPKA.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'font';
+    src: url('fonts/DynaPuff-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.model-container2 {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    align-items: center;
+}
+
+/* Стили для контейнера */
+.container {
+    width: 100%;
+    min-height: 100vh;
+    --color: #c9c9c981;
+    background-color: #e8e8e8;
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+                      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+    background-size: 70px 70px;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+/* Стили для наложения */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Игнорирует события мыши */
+    
+}
+
+/* Стили для заголовка */
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(51, 79, 222);
+    padding: 10px 20px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+    font-size: 1.4em;
+}
+
+nav ul li a:hover {
+    border-color: rgb(51, 79, 222);
+}
+
+/* Стили для основного контента */
+main {
+    padding: 20px;
+}
+
+.intro {
+    text-align: left;
+    color: rgb(51, 79, 222);
+    font-weight: bold;
+    max-width:100%;
+    margin: 0 auto;
+}
+
+.intro h1, .intro h2, .intro h3 {
+    margin: 0;
+    padding: 0px 0;
+    line-height: 1;
+}
+
+.intro h1 {
+    font-size: 3em;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.intro h2 {
+    font-size: 1.5em;
+}
+
+.intro h3 {
+    font-size: 1.2em;
+}
+/* Стили для иконки домика */
+.home-icon {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+    padding: 0px 20px;
+}
+.home-icon img {
+    width: 100%; /* Убедимся, что изображение занимает всю ширину контейнера */
+    height: auto; /* Сохраняем пропорции изображения */
+}
+.home-icon:hover {
+    border-color: rgb(51, 79, 222);
+}
+
+
+/* WORK */
+.video-container iframe {
+    width: 100%;
+    height: 600px; /* Измените высоту видео */
+    border-radius: 35px; /* Скруглите углы */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 50px;
+    color: rgb(51, 79, 222);
+}
+
+.recent-videos {
+    display: flex;
+    justify-content: center; /* Центрируем видео */
+    flex-wrap: wrap; /* Разрешаем перенос видео на новую строку */
+    gap: 20px; /* Отступы между видео */
+    margin-top: 20px;
+}
+
+.recent-videos iframe {
+    flex: 1 1 calc(33.333% - 20px); /* Автоматический расчет ширины видео */
+    height: 800px; /* Увеличиваем высоту видео */
+    border-radius: 30px;
+    box-sizing: border-box; /* Включаем padding и border в ширину */
+}
+
+/* ABOUT */
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0px; /* Adjust for the fixed header */
+}
+.about-me {
+    width: 45%;
+    margin-right: 50px;
+}
+.skills-container {
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+    margin-right: 50px;
+}
+.about-title {
+    font-size: 36px;
+    color: rgb(51, 79, 222);
+    padding: 10px;
+    text-align: left;
+}
+.about-text {
+    font-family: 'font', sans-serif;
+    font-size: 20px;
+    line-height: 1.9;
+    margin-top: 20px;
+    color: rgb(51, 79, 222);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skills-text {
+    font-family: 'font', sans-serif;
+    font-size: 20px;
+    line-height: 1.9;
+    margin-top: 47px;
+    color: rgb(51, 79, 222);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skills-highlight{
+    color: rgb(222, 51, 157);
+}
+.skills-container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-right: 50px;
+    color: rgb(51, 79, 222);
+}
+
+.section-title {
+    font-size: 30px;
+    text-align: left;
+    margin-bottom: 10px;
+    color: rgb(51, 79, 222);
+    margin-top: 40px;
+}
+.programs-list, .render-list {
+    font-family: 'font', sans-serif;
+    list-style-type: none;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 35px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 110px;
+}
+
+.programs-list li, .render-list li {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+/* страница контакты */
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Выравнивание по левому краю */
+    position: absolute;
+    right: 30%;
+    top: 30%;
+    transform: translateY(25%);
+    z-index: 50;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 30px; /* Отступ между кнопками */
+}
+
+.contact-button img {
+    width: 110px;
+    height: 110px;
+    margin-right: 10px; /* Отступ между иконкой и текстом */
+    z-index: 50;
+}
+.contact-button:hover img {
+    animation: shake-and-scale 0.5s forwards; /* Анимация дрожания и увеличения */
+}
+
+@keyframes shake-and-scale {
+    0% {
+        transform: scale(1) translateX(0);
+    }
+    25% {
+        transform: scale(1.1) translateX(-5px);
+    }
+    50% {
+        transform: scale(1.2) translateX(5px);
+    }
+    75% {
+        transform: scale(1.1) translateX(-5px);
+    }
+    100% {
+        transform: scale(1.2) translateX(0);
+    }
+}
+
+.contact-button span {
+    font-weight: 600;
+    color: rgb(51, 79, 222);
+    font-size: 24px;
+}
+
+#model-container {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 20%;
+    align-items: center;
+}
+
+
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    --color: #c9c9c981;
+    background-color: #e8e8e8;
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+                      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+    background-size: 70px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+/* Адаптивные стили */
+@media (max-width: 1200px) {
+    .about-container {
+        flex-direction: column;
+    }
+    .about-me, .skills-container {
+        width: 100%;
+        margin-right: 0;
+    }
+    #model-container {
+        right: 10%;
+    }
+}
+
+@media (max-width: 900px) {
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        padding: 10px 15px;
+        font-size: 1.2em;
+    }
+
+    .intro h1 {
+        font-size: 2em;
+    }
+
+    .intro h2 {
+        font-size: 1.4em;
+    }
+
+    .intro h3 {
+        font-size: 1.1em;
+    }
+
+    .recent-videos iframe {
+        flex: 1 1 calc(50% - 20px); /* Автоматический расчет ширины видео */
+        height: 400px; /* Увеличиваем высоту видео */
+    }
+    #model-container {
+        right: 5%;
+    }
+}
+
+@media (max-width: 600px) {
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .intro h1 {
+        font-size: 1.5em;
+    }
+
+    .intro h2 {
+        font-size: 1.2em;
+    }
+
+    .intro h3 {
+        font-size: 1em;
+    }
+
+    .recent-videos iframe {
+        flex: 1 1 calc(100% - 20px); /* Автоматический расчет ширины видео */
+        height: 300px; /* Увеличиваем высоту видео */
+    }
+
+    .contact-buttons {
+        align-items: center; /* Выравнивание по центру */
+    }
+    #model-container {
+        right: 0;
+    }
+}
+
+.loader {
+    --ANIMATION-DELAY-MULTIPLIER: 70ms;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .loader span {
+    padding: 0;
+    margin: 0;
+    letter-spacing: -5rem;
+    animation-delay: 0s;
+    transform: translateY(4rem);
+    animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  .loader .l {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0);
+  }
+  .loader .o {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1);
+  }
+  .loader .a {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2);
+  }
+  .loader .d {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3);
+  }
+  .loader .ispan {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4);
+  }
+  .loader .n {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5);
+  }
+  .loader .g {
+    animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6);
+  }
+  .letter {
+    width: fit-content;
+    height: 3rem;
+  }
+  .i {
+    margin-inline: 5px;
+  }
+  @keyframes hideAndSeek {
+    0% {
+      transform: translateY(4rem);
+    }
+    100% {
+      transform: translateY(0rem);
+    }
+  }
+  
