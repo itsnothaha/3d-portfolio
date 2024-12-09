@@ -49,10 +49,10 @@ body {
 /* Стили для наложения */
 .overlay {
     position: absolute;
-    top: 0;
+    top: 35%;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 65%;
+    height: 65%;
     object-fit: cover;
     pointer-events: none; /* Игнорирует события мыши */
     
@@ -270,7 +270,7 @@ h2 {
     flex-direction: column;
     align-items: flex-start; /* Выравнивание по левому краю */
     position: absolute;
-    right: 30%;
+    right: 10%;
     top: 30%;
     transform: translateY(25%);
     z-index: 50;
