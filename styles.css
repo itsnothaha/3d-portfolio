@@ -110,9 +110,10 @@ main {
 }
 
 .intro h1 {
-    font-size: 3em;
+    font-size: 5em;
     margin-bottom: 0px;
-    margin-top: 0px;
+    margin-top: 10px;
+    margin-left: 0;
 }
 
 .intro h2 {

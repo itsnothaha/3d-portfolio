@@ -1,6 +1,6 @@
 async function loadModel(containerId, modelPath, hdriPath) {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(70, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMap.enabled = true; // shadows
@@ -37,7 +37,7 @@ async function loadModel(containerId, modelPath, hdriPath) {
     const model = gltf.scene;
     scene.add(model);
     model.position.set(0, 0, 0);
-    model.scale.set(1.1, 1.7, 1.1); // Increase the scale to make the model larger
+    model.scale.set(1.1, 1.9, 1.1); // Increase the scale to make the model larger
 
     // Create a target point for the camera to look at
     const target = new THREE.Object3D();
@@ -48,6 +48,59 @@ async function loadModel(containerId, modelPath, hdriPath) {
     const mixer = new THREE.AnimationMixer(model);
     const action = mixer.clipAction(gltf.animations[0]); // Assuming there's only one animation
     action.play();
+
+
+    // Find the head bone within the metarig
+    let headBone = null;
+    model.traverse((child) => {
+        if (child.isBone && child.name === 'head') {
+            headBone = child;
+            console.log('Head bone found:', headBone);
+        }
+    });
+
+    if (!headBone) {
+        console.error('Head bone not found in the model.');
+    } else {
+        // Apply initial rotation to the head bone using quaternions
+        const initialQuaternion = new THREE.Quaternion();
+        initialQuaternion.setFromEuler(new THREE.Euler(0, 0, 0, 'XYZ'));
+        headBone.quaternion.copy(initialQuaternion);
+    }
+
+    // Add event listener for mouse movement
+    document.addEventListener('mousemove', (event) => {
+        if (headBone) {
+            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            // Calculate the angle to look at the mouse position
+            const vector = new THREE.Vector3(-mouseX, -mouseY, 0.5);
+            vector.unproject(camera);
+            const dir = vector.sub(camera.position).normalize();
+            const targetPosition = new THREE.Vector3().addVectors(camera.position, dir.multiplyScalar(10));
+
+            
+
+            // Rotate the head bone to look at the target position
+            headBone.lookAt(targetPosition);
+
+            // Apply an additional 180-degree rotation around the Y-axis
+            const additionalRotation = new THREE.Quaternion();
+            additionalRotation.setFromEuler(new THREE.Euler(0, Math.PI, 0, 'YXZ'));
+            headBone.quaternion.multiply(additionalRotation);
+
+            // Limit the rotation around the X-axis
+            const euler = new THREE.Euler();
+            euler.setFromQuaternion(headBone.quaternion, 'XYZ');
+            euler.x = Math.max(Math.min(euler.x, Math.PI ), Math.PI / 4); // Limit to ±45 degrees
+            euler.y = Math.max(Math.min(euler.y, Math.PI / 4), -Math.PI / 4); // Limit to ±45 degrees
+            euler.z = Math.max(Math.min(euler.z, Math.PI / 6), -Math.PI / 6); // Limit to ±45 degrees
+
+            euler.x += 0.3; // Add a small offset to look slightly lower
+            headBone.quaternion.setFromEuler(euler);
+        }
+    });
 
     // Animation loop
     function animate() {
@@ -65,6 +118,7 @@ async function loadModel(containerId, modelPath, hdriPath) {
     camera.position.z = 4;
     camera.position.y = 2;
 
+
     return scene;
 }
 
@@ -75,3 +129,15 @@ loadModel('model-container2', 'girl2.glb', 'hdri.exr').then(() => {
 }).catch(error => {
     console.error('An error occurred while loading the model:', error);
 });
+
+
+
+
+
+
+
+
+
+
+
+
