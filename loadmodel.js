@@ -47,8 +47,19 @@ async function loadModel(containerId, modelPath, hdriPath) {
     // Get the animation mixer and actions
     const mixer = new THREE.AnimationMixer(model);
     const action = mixer.clipAction(gltf.animations[0]); // Assuming there's only one animation
-    action.play();
+    action.loop = THREE.LoopOnce; // Set the animation to play once
+    action.clampWhenFinished = true; // Ensure the animation stays at the last frame
 
+    // Function to restart the animation after a pause
+    function restartAnimation() {
+        action.reset();
+        action.play();
+        setTimeout(restartAnimation, 5000 + action.getClip().duration * 1000); // Pause for 5 seconds plus the duration of the animation
+    }
+
+    // Start the animation and set up the restart
+    action.play();
+    setTimeout(restartAnimation, 5000 + action.getClip().duration * 1000); // Initial pause plus the duration of the animation
 
     // Find the head bone within the metarig
     let headBone = null;
@@ -80,8 +91,6 @@ async function loadModel(containerId, modelPath, hdriPath) {
             const dir = vector.sub(camera.position).normalize();
             const targetPosition = new THREE.Vector3().addVectors(camera.position, dir.multiplyScalar(10));
 
-            
-
             // Rotate the head bone to look at the target position
             headBone.lookAt(targetPosition);
 
@@ -103,11 +112,13 @@ async function loadModel(containerId, modelPath, hdriPath) {
     });
 
     // Animation loop
+    const clock = new THREE.Clock();
+
     function animate() {
         requestAnimationFrame(animate);
 
-        // Update the animation mixer
-        mixer.update(0.016); // Update the mixer with the delta time (16ms)
+        const delta = clock.getDelta();
+        mixer.update(delta);
 
         camera.lookAt(target.position); // Make the camera look at the target point
         renderer.render(scene, camera);
@@ -117,7 +128,6 @@ async function loadModel(containerId, modelPath, hdriPath) {
     // Set the camera position
     camera.position.z = 4;
     camera.position.y = 2;
-
 
     return scene;
 }
@@ -129,10 +139,6 @@ loadModel('model-container2', 'girl2.glb', 'hdri.exr').then(() => {
 }).catch(error => {
     console.error('An error occurred while loading the model:', error);
 });
-
-
-
-
 
 
 
